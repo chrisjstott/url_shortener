@@ -37,4 +37,12 @@ class ShortenedUrl < ActiveRecord::Base
   def num_clicks
     Visit.where("url_id = ?", id).count
   end
+
+  def num_uniques
+    Visit.select(:user_id).distinct.count
+  end
+
+  def num_recent_uniques(time = 10.minutes.ago)
+    Visit.select(:user_id).distinct.where()
+
 end
