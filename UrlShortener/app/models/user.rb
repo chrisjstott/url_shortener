@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   has_many(
     :visited_urls,
-    -> { distinct }
+    -> { distinct },
     through: :visits,
     source: :url
   )
