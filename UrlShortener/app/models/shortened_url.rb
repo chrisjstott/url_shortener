@@ -29,6 +29,13 @@ class ShortenedUrl < ActiveRecord::Base
     source: :user
   )
 
+  has_many(
+    :taggings,
+    class_name: 'Tagging',
+    primary_key: :id
+    foreign_key: :shortened_url_id
+  )
+
   def self.create_for_user_and_long_url!(user, long_url)
     short_url = ShortenedUrl.random_code
     ShortenedUrl.create!(submitter_id: user.id, long_url: long_url, short_url: short_url)
